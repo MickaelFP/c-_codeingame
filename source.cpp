@@ -1,23 +1,12 @@
-//l'exercice du jours est à la fin
-
 #include <iostream>
-#include <ctime>
 #include <algorithm>
 #include <vector>
+#include <random>
 
 using namespace std;
 
 //Recherche dichotomique de l'entier ToSearch dans le tableau tab
 int BinarySearch(vector<int> tab, int toSearch) {
-    //Divise tableau en 2
-    //la case du milieu == tosearch ?
-        //return index
-    //taille(la case du milieu) == 1 ?
-        // return -1;
-    //la case du milieu > toSearch ?
-        // binarySearch(tab inferieur, toSearch)
-    //la case du milieu < toSearch ?
-        // binarySearch(tab superieur, toSearch)
     return -1;
 }
 
@@ -25,6 +14,7 @@ int BinarySearch(vector<int> tab, int toSearch) {
 int LinearSearch(vector<int> tab, int toSearch) {
     for (int i = 0; i < tab.size(); i++) {
         if (tab[i] == toSearch) {
+            cout << "Trouve en " << i+1 << " tours" << endl;
             return i;
         }
     }
@@ -35,44 +25,44 @@ int LinearSearch(vector<int> tab, int toSearch) {
 void showTab(vector<int> tab) {
     cout << "tab[" << tab.size() << "] = {";
     for (int i = 0; i < tab.size(); i++) { 
-        if (i != tab.size() - 1) {
-            cout << tab[i] << ", ";
-        }
-        else {
-            cout << tab[i] << "}" << endl;
-        }
+        cout << tab[i];
+        cout << ((i != tab.size() - 1) ? ", " : "}");
     }
+    cout << endl;
+}
+
+void initializeTab(vector<int>& tab, mt19937 mersenne) {
+    uniform_int_distribution<int> randomSize(10, 50);
+    int NbElements = randomSize(mersenne);
+    for (int i = 0; i < NbElements; i++) {
+        tab.push_back(i);
+    }
+    shuffle(tab.begin(), tab.end(), mersenne);
 }
 
 int main() {
-    srand(time(NULL));
     vector<int> tab;
-    int NbElements = 10;
-    for (int i = 0; i < NbElements; i++) {
-        int random = rand() % NbElements;
-        for (int j = 0; j < i; j++) {
-            if (tab[j] == random) {
-                random = rand() % 10;
-                j = -1;
-            }
-        }
-        tab.push_back(random);
-    }
+
+    //RANDOM ELEMENTS
+    random_device rnd_device;
+    mt19937 mersenne{ rnd_device() };
+
+    initializeTab(tab, mersenne);
     showTab(tab);
-    sort(tab.begin(), tab.end());
-    showTab(tab);
+
+    uniform_int_distribution<int> randomSearch(0, tab.size() - 1);
+    int toSearch = randomSearch(mersenne);
+
+    //LINEARSEARCH ICI
+    cout << "LINEAR SEARCH : " << endl;
+    cout<<"LinearSearch("<<toSearch<<") = "<< LinearSearch(tab, toSearch)<<endl;
 
     //BINARYSEARCH ICI
-    int toSearch = rand()%NbElements;
-    cout << "Recherche de " << toSearch << endl;
-    BinarySearch(tab, toSearch);
+    cout << "BINARY SEARCH : " << endl;
+    sort(tab.begin(), tab.end());
+    showTab(tab);
+    cout << "BinarySearch(" << toSearch << ") = " << BinarySearch(tab, toSearch)<<endl;
 }
-
-researchDichotomique Iterative {
-    //déclarations
- début, fin, val, mil, N : Entiers
- t : Tableau [0..N] d'entiers classé
- trouvé : Booléen
  
  /*
  int debut = 0
