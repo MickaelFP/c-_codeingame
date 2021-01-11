@@ -89,7 +89,7 @@ researchDichotomique Iterative {
      if (tab[mil] == val) {
          trouve = true;
      }
-     elif if (val > tab[mil]) {
+     elif (val > tab[mil]) {
          if (val > tab[mil]) {
              debut = mil + 1;
          }
