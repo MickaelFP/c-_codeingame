@@ -1,1 +1,1 @@
-# c-_codeingame
+# https://mickaelfp.github.io/c-_codeingame/
