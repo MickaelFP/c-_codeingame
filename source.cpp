@@ -1,3 +1,5 @@
+//l'exercice du jours est à la fin
+
 #include <iostream>
 #include <ctime>
 #include <algorithm>
@@ -72,7 +74,7 @@ researchDichotomique Iterative {
  t : Tableau [0..N] d'entiers classé
  trouvé : Booléen
  
- (
+ /*
  int debut = 0
  int fin = N;
  int val;
@@ -85,12 +87,23 @@ researchDichotomique Iterative {
  while (trouve != true; debut <= fin) { 
      mil = partie_entière((debut + fin)/2);
      if (tab[mil] == val) {
-         trouve = true
-     elif if (val > tab[mil])
+         trouve = true;
+     }
+     elif if (val > tab[mil]) {
+         if (val > tab[mil]) {
+             debut = mil + 1;
+         }
+         else {
+             fin = mil - 1;
+         }
      }
  }
-
- )
+ if (trouve == true) {
+     cout << "la valeur" << val << "est au rang" << mil << endl;
+ }
+ else {
+     cout << "la valeur" << val << "n'est pas dans le tableau" << endl;
+ */
 
 //initialisation
  début ← 0 
